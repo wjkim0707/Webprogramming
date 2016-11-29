@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  .container
+    if post.id
+      h1.page-header 수정
+    else
+      h1.page-header 등록
+
+    form(action = (post.id) ? "/posts/#{post.id}?_method=PUT" : "/posts", method='POST')
+      .form-group
+        label(for='title') 숙소 이름
+        input.form-control(type='text', id='title', name='title', placeholder='숙소 이름', value=post.title)
+        .form-group
+        label(for='city') 도시
+        input.form-control(type='text', id='dity', name='city', placeholder='도시', value=post.city)
+      .form-group
+        label(for='fee') 이용 요금
+        input.form-control(type='text', id='fee', name='fee', placeholder='이용 요금', value=post.fee)
+        
+      .form-group
+        label(for='password') 비밀번호
+        input.form-control(type='password', id='password', name='password', placeholder='비밀번호')
+      .form-group
+        label(for='detail') 상세 설명
+        textarea.form-control(id='detail', rows='10', name='detail', placeholder='설명을 등록하세요.')= post.detail
+
+      div.form-actions
+        a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
+        | 
+        button.btn.btn-primary(type='submit') 완료

@@ -17,14 +17,19 @@
           li
             a(href='/users') 사용자목록
           li
+            a(href='/posts') 숙소 목록
+          li
             a(href='/users/#{currentUser._id}') 회원정보
           li
             a(href='/signout') 로그아웃
+          
         else
           li
             a(href='/todos') 호스팅하기
           li
             a(href='/users') 사용자목록
+          li
+            a(href='/posts/index') 숙소 목록
            li
             a(href='/users/new') 회원가입
           li

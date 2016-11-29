@@ -11,10 +11,12 @@ var mongoose   = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
 
-var routes = require('./routes/index'),
-    users = require('./routes/users'),
-    todos = require('./routes/todos'),
-    tasks = require('./routes/tasks');
+var routes = require('./routes/index');
+var users = require('./routes/users');
+var todos = require('./routes/todos');
+var tasks = require('./routes/tasks');
+var posts = require('./routes/posts');
+  
 
 var routeAuth = require('./routes/auth');
 
@@ -54,7 +56,8 @@ module.exports = function(app, io) {
   app.use('/bower_components',  express.static(path.join(__dirname, '/bower_components')));
 
 
-
+  
+  
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -69,6 +72,7 @@ module.exports = function(app, io) {
   app.use('/', routes);
   app.use('/users', users);
   app.use('/todos', todos);
+  app.use('/posts', posts);
   app.use('/tasks', tasks(io));
   routeAuth(app, passport);
 
