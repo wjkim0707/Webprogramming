@@ -10,21 +10,29 @@ block content
     form(action = (post.id) ? "/posts/#{post.id}?_method=PUT" : "/posts", method='POST')
       .form-group
         label(for='title') 숙소 이름
-        input.form-control(type='text', id='title', name='title', placeholder='숙소 이름', value=post.title)
+        input.form-control(type='String', id='title', name='title', placeholder='숙소 이름', value=post.title)
         .form-group
-        label(for='city') 도시
-        input.form-control(type='text', id='dity', name='city', placeholder='도시', value=post.city)
+        label(for='city') 지역
+        input.form-control(type='String', id='city', name='city', placeholder='도시', value=post.city)
+        .form-group
+        label(for='address') 주소
+        input.form-control(type='String', id='address', name='address', placeholder='주소', value=post.address)
       .form-group
         label(for='fee') 이용 요금
-        input.form-control(type='text', id='fee', name='fee', placeholder='이용 요금', value=post.fee)
-        
+        input.form-control(type='String', id='fee', name='fee', placeholder='이용 요금', value=post.fee)
+        .form-group
+        label(for='rule') 이용 규칙
+        textarea.form-control(type = 'String',id='rule', name='rule', placeholder='규칙을 등록하세요.', value=post.address)
+        .form-group
+        label(for='facilities') 편의 시설
+        textarea.form-control(type = 'String',id='facilities', name='facilities', placeholder='편의 시설을 설명하세요.', value = post.facilities)
+      .form-group
+        label(for='detail') 숙소 설명
+        textarea.form-control(type = 'String',id='detail' , name='detail', placeholder='설명을 등록하세요.',value= post.detail)
       .form-group
         label(for='password') 비밀번호
         input.form-control(type='password', id='password', name='password', placeholder='비밀번호')
-      .form-group
-        label(for='detail') 상세 설명
-        textarea.form-control(id='detail', rows='10', name='detail', placeholder='설명을 등록하세요.')= post.detail
-
+      
       div.form-actions
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 

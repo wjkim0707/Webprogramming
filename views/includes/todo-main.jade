@@ -1,14 +1,22 @@
 form#form-task.form-inline(class='todos')
   .form
-    .main
-      input(type='text', id='content', name='content', placeholder='해야할 일이 무엇인가요?')
+    
     .sub
       .form-group
-        select.form-control(name='category')
-          option(value='개인') 개인
-          option(value='가족') 가족
-          option(value='업무') 업무
-          option(value='기타') 기타
+        select.form-control(name='region')
+          option(value='서울') 서울
+          option(value='인천') 인천
+          option(value='부산') 부산
+          option(value='대전') 대전
+          option(value='대구') 대구
+          option(value='울산') 울산
+          option(value='광주') 광주
+          option(value='경기도') 경기도
+          option(value='강원도') 강원도
+          option(value='충청도') 충청도
+          option(value='전라도') 전라도
+          option(value='경상도') 경상도
+
       .form-group
         select.form-control(name='priority')
           option(value='3') 중요
@@ -20,7 +28,7 @@ form#form-task.form-inline(class='todos')
 ul.tasks
 
 .no-task 
-  .alert.alert-info Task가 없습니다.
+  .alert.alert-info 등록된 숙소가 없습니다.
 script#task-template(type='text/template').
   <li class='task <%= doneStr %>' data-id='<%= id %>'>
     <span class='check'>
@@ -28,7 +36,7 @@ script#task-template(type='text/template').
     </span>
     <span class='content'><%=content %></span>
     <% if (category) { %>
-      <span class='label label-default category'> 
+      <span class='label label-default region'> 
         <%= category %>
       </span>
     <% } %>

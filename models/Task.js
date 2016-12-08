@@ -3,8 +3,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var schema = new Schema({
-  content: {type: String, required: true, trim: true},
-  category: {type: String, trim: true},
+  region: {type: String, trim: true},
   priority: {type: Number, trim: true},
   deadline: Date,
   done: {type: Boolean, default: false},
@@ -16,8 +15,7 @@ var schema = new Schema({
     transform: function(task) {
       return {
         id: task._id.toString(),
-        category: task.category,
-        content: task.content,
+        region: task.region,
         priority: task.priority,
         deadline: (task.deadline) ? moment(task.deadline).format('YYYY-MM-DD') : "N/A",
         done: task.done

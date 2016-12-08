@@ -2,6 +2,8 @@ var express = require('express');
 var Post = require('../models/Post');
 var router = express.Router();
 
+
+
 // posts/index를 찾아서 렌더링해줌
 router.get('/', function(req, res, next) {
   Post.find({}, function(err, posts){
@@ -21,6 +23,9 @@ router.get('/new', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var post = new Post({
    title : req.body.title,
+   address : req.body.address,
+   facilities : req.body.facilites,
+   rule : req.body.rule,
     fee : req.body.fee,
     city : req.body.city,
     detail : req.body.detail,
@@ -80,12 +85,16 @@ router.put('/:id', function(req, res, next) {
     if (err) {
       return next(err);
     }
+    
     // 맞으면 이메일과 제목, 내용을 해당 정보로 바꾼후 저장
     
-    post.title = req.body.title;
-    post.city = req.body.city;
-    post.fee = req.body.fee;
-    post.detail = req.body.detail;
+   post.title = req.body.title,
+   post.address = req.body.address,
+   post.facilities = req.body.facilities,
+   post.rule = req.body.address,
+   post.fee = req.body.fee,
+   post.city = req.body.city,
+   post.detail = req.body.detail,
     post.save(function(err) {
       if (err) {
         return next(err);
@@ -104,12 +113,5 @@ function needAuth(req, res, next) {
     res.redirect('/signin');
   }
 }
-
-router.get('/', needAuth, function(req, res, next) {
-  res.render('todos');
-});
-
-
-
 module.exports = router;
 

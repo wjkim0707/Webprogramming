@@ -30,7 +30,7 @@ module.exports = function(app, io) {
   app.locals.moment = require('moment');
 
   // mongodb connect
-  mongoose.connect('mongodb://wjkim0707:dnwls2182@ds139847.mlab.com:39847/wjkim0707');
+  mongoose.connect('mongodb://wjkim0707:dnwls2182@ds127428.mlab.com:27428/woojin');
   mongoose.connection.on('error', console.log);
 
   // uncomment after placing your favicon in /public

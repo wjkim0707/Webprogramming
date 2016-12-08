@@ -13,11 +13,11 @@
       ul.nav.navbar-nav.navbar-right
         if (currentUser) 
           li
-            a(href='/todos') 호스팅하기
-          li
-            a(href='/users') 사용자목록
+            a(href='/todos') 숙소 확인
           li
             a(href='/posts') 숙소 목록
+          li
+            a(href='/users') 회원 목록
           li
             a(href='/users/#{currentUser._id}') 회원정보
           li
@@ -27,9 +27,9 @@
           li
             a(href='/todos') 호스팅하기
           li
-            a(href='/users') 사용자목록
+            a(href='/posts') 숙소 확인
           li
-            a(href='/posts/index') 숙소 목록
+            a(href='/users') 회원 목록
            li
             a(href='/users/new') 회원가입
           li

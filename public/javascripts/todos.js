@@ -59,11 +59,11 @@ var TaskController = function() {
     if (!checked('priority', task.priority)) {
       return false;
     }
-    if (_.includes(['개인', '가족', '업무'], task.category)) {
-      if (!checked('category', task.category)) {
+    if (_.includes(['개인', '가족', '업무'], task.region)) {
+      if (!checked('region', task.region)) {
         return false;
       }
-    } else if (!checked('category', '기타')) {
+    } else if (!checked('region', '기타')) {
       return false;
     }
     return true;
@@ -95,7 +95,7 @@ var TaskController = function() {
 
   Constructor.prototype.clearForm = function() {
     $("#form-task input").val("");
-    $("#form-task select[name='category']").val("개인");
+    $("#form-task select[name='region']").val("서울");
     $("#form-task select[name='priority']").val("2");
     $("#form-task input:first").focus();
   };

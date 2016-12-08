@@ -28,8 +28,7 @@ module.exports = function(io) {
       return res.status(400).json({message: 'need content'});
     }
     var task = new Task({
-      content: req.body.content,
-      category: req.body.category || "N/A",
+      region: req.body.region || "N/A",
       priority: req.body.priority || 3,
       deadline: req.body.deadline,
       user: req.user.id
@@ -51,11 +50,8 @@ module.exports = function(io) {
       if (!task) {
         return res.status(404).json({message: 'task not found'});
       }
-      if (req.body.content) {
-        task.content = req.body.content;
-      }
-      if (req.body.category) {
-        task.category = req.body.category;
+      if (req.body.region) {
+        task.region = req.body.region;
       }
       if (req.body.priority) {
         task.priority = req.body.priority;

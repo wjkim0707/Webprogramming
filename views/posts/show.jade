@@ -2,13 +2,29 @@ extends ../layout
 
 block content
   .container
-    h1.page-header= post.title
+    h1 숙소이름 
+    h2.page-header= post.title
     p
-      b by #{post.fee}
-      | 
-      span at #{moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
+      span 등록 날짜 #{moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
       | 
       | (조회수 #{post.read})
-    p.well(style='white-space:pre;')= post.content
+    
+    h4 지역 
+    p.well(style='white-space:pre;')= post.city
+
+    h4 상세 주소 
+    p.well(style='white-space:pre;')= post.address
+
+    h4 이용 요금(1박기준)
+    p.well(style='white-space:pre;')= post.fee
+
+    h4 이용 규칙
+    p.well(style='white-space:pre;')= post.rule
+
+    h4 편의 시설
+    p.well(style='white-space:pre;')= post.facilities
+
+    h4 숙소 설명
+    p.well(style='white-space:pre;')= post.detail
     
     a.btn.btn-default(href='/posts') 목록

@@ -16,6 +16,7 @@ html(lang='ko')
   body
     block top-nav
       include ./includes/topnav
+    
     block hero-unit
     .main-content
       if flashMessages
@@ -23,9 +24,9 @@ html(lang='ko')
           .container
             .alert(class='alert-#{type}')
               each msg in texts
-                p= msg           
-    
-     block content
+                p= msg  
+             
+    block content
 
     block footer
       include ./includes/footer
