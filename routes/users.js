@@ -50,6 +50,25 @@ router.get('/', needAuth, function(req, res, next) {
   });
 });
 
+router.get('/:id/index', function(req,res,next){
+  User.find({}, function(err,users){
+    if(err) {
+      return next(err);
+    }
+    User.findById(req.params.id, function(err,user) {
+      if(err) {
+        return next(err);
+      }
+      if(user.master === "yes"){
+        res.render('users/index', {users});
+      } else {
+        req.flash('danger', '관리자가 아닙니다.');
+        return res.redirect('back');
+      }
+    });
+  });
+});
+
 router.get('/new', function(req, res, next) {
   res.render('users/new', {messages: req.flash()});
 });
