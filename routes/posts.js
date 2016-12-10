@@ -1,4 +1,5 @@
 var express = require('express');
+var User = require('../models/User');
 var Post = require('../models/Post');
 var router = express.Router();
 
@@ -19,6 +20,32 @@ router.get('/new', function(req, res, next) {
   res.render('posts/edit',{post: {}});
 });
 
+router.get('/index',function(req,res,next) {
+
+  var search_keyword = req.query.search_keyword;
+
+  if(search_keyword){
+    Post.find({nation: search_keyword}).sort({createdAt: -1}, function(err,posts){
+      if (err) {
+        return next(err);
+      }
+      res.render('posts/show', {
+        posts:posts
+      });
+    });
+  } else {
+
+    Post.find().sort({createdAt: -1}, function(err,posts){
+      console.log(posts);
+      if(err) {
+        return next(err);
+      }
+      res.render('posts/show',{
+        posts:posts
+      });
+    });
+  }
+});
 // DB에 해당 값을 입력하고 저장한다.
 router.post('/', function(req, res, next) {
   var post = new Post({
@@ -57,23 +84,20 @@ router.get('/:id', function(req, res, next) {
  
 // 해당 id를 찾아서 그 id에 해당하는 정보를 지움
 router.delete('/:id', function(req, res, next) {
-  Post.findOneAndRemove({_id: req.params.id}, function(err) {
+   Post.findById(req.params.id,function(err,post){
     if (err) {
       return next(err);
     }
-    res.redirect('/posts');
+   });
+    Post.findOneAndRemove({_id: req.params.id}, function(err) {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', '등록된 숙소가 삭제되었습니다.');
+      res.redirect('back');
+    });
   });
-});
 
-// 해당 id를 찾아서 비밀번호를 제외한 그 id의 내용을 보여줌
-router.get('/:id/edit', function(req, res, next) {
-  Post.findById(req.params.id, function(err, post) {
-    if (err) {
-      return next(err);
-    }
-    res.render('posts/edit', {post: post});
-  });
-});
 
 
 router.put('/:id', function(req, res, next) {
