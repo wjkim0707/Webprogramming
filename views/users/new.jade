@@ -16,6 +16,12 @@ block content
       .form-group
         label(for='password_confirmation') Password 확인
         input.form-control(type='password', id='password_confirmation', name='password_confirmation', placeholder='Password')
+        .form-group
+        label(for='costum') 사용자 분류
+        input.form(type='checkbox', name='host',value = 'host')
+        |호스트(방빌려주는사람)
+        input.form(type='checkbox', name='traver',value = 'traver')
+        |이용자(방빌리는사람)
       div.form-actions
         a.btn.btn-default(href='javascript:window.history.back();') 뒤로 
         | 

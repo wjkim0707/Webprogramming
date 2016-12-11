@@ -8,6 +8,8 @@ var schema = new Schema({
   password: {type: String},
   createdAt: {type: Date, default: Date.now},
   facebook: {id: String, token: String, photo: String},
+  host: {type: String},
+  traver: {type: String},
   master: {type: String, required: true, default: "no"}
 }, {
   toJSON: { virtuals: true},

@@ -155,6 +155,8 @@ router.post('/', function(req, res, next) {
     var newUser = new User({
       name: req.body.name,
       email: req.body.email,
+      host: req.body.host,
+      traver: req.body.traver
     });
     newUser.password = newUser.generateHash(req.body.password);
 
