@@ -11,6 +11,7 @@ var mongoose   = require('mongoose');
 var passport = require('passport');
 var configAuth = require('./config/auth');
 
+var reservations = require('./routes/reservations');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var todos = require('./routes/todos');
@@ -74,6 +75,7 @@ module.exports = function(app, io) {
   app.use('/users', users);
   app.use('/todos', todos);
   app.use('/posts', posts);
+  app.use('/reservations', reservations);
   app.use('/tasks', tasks(io));
   routeAuth(app, passport);
 

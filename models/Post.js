@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 // schema선언   DB에 title, fee, city, detail, password, read, createdAt을 넣어주겠다고 선언함
 var schema = new Schema({
