@@ -34,7 +34,7 @@ router.post('/', function(req, res, next) {
   var post = new Post({
    title : req.body.title,
    address : req.body.address,
-   facilities : req.body.facilites,
+   facilities : req.body.facilities,
    rule : req.body.rule,
     fee : req.body.fee,
     city : req.body.city,
