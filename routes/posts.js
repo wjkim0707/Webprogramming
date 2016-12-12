@@ -20,6 +20,16 @@ router.get('/new', function(req, res, next) {
   res.render('posts/edit',{post: {}});
 });
 
+// 수정 버튼을 누르면 해당 아이디에 수정화면으로 넘어감
+router.get('/:id/edit', function(req, res, next) {
+    Post.findById(req.params.id, function(err, post) {
+        if (err) {
+            return next(err);
+        }
+        res.render('posts/edit', {post: post});
+    }); 
+});
+
 router.post('/search', function(req, res, next) {
     Post.find({city: req.body.search}, function(err, posts){
         if (err) {
