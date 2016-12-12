@@ -30,14 +30,16 @@ block content
               | 
               a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제      
 
-    a.btn.btn-primary(href='/posts/new') 숙소 등록
-
+    a.btn.btn-primary(href='/posts/new') 숙소 등록 
     
-    from.search-form(role='search', method = 'GET', action='/posts/index')
-                .input-group
-                  input.form-control(type='text', id = 'search_ketword', name ='search_keyword', placeholder = '검색할 것을 입력하세요')
-                  span.input-group-btn
-                    button.btn.btn-default(type='submit') 검색    
+    h3 지역을 입력하면 원하는 지역의 숙소를 보여줍니다. (ex) 경기도/강원도/전라도
+    form(action="/posts/search", method='POST')
+        .row
+          .col-lg-6
+            .input-group
+               input(type="text",name='search',id='search', class="form-control" placeholder="ex 경기도/강원도")
+               span.input-group-btn
+                  button.btn.btn-default(type="submit" ) 검색  
    
     form#deleteForm(style='display:none', method="POST")
             

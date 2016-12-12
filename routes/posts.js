@@ -20,32 +20,15 @@ router.get('/new', function(req, res, next) {
   res.render('posts/edit',{post: {}});
 });
 
-router.get('/index',function(req,res,next) {
-
-  var search_keyword = req.query.search_keyword;
-
-  if(search_keyword){
-    Post.find({nation: search_keyword}).sort({createdAt: -1}, function(err,posts){
-      if (err) {
-        return next(err);
-      }
-      res.render('posts/show', {
-        posts:posts
-      });
+router.post('/search', function(req, res, next) {
+    Post.find({city: req.body.search}, function(err, posts){
+        if (err) {
+            return next(err);
+        }
+        res.render('posts/index', {posts: posts});
     });
-  } else {
-
-    Post.find().sort({createdAt: -1}, function(err,posts){
-      console.log(posts);
-      if(err) {
-        return next(err);
-      }
-      res.render('posts/show',{
-        posts:posts
-      });
-    });
-  }
 });
+
 // DB에 해당 값을 입력하고 저장한다.
 router.post('/', function(req, res, next) {
   var post = new Post({
