@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  .container
+    h1 예약 확인 
+    p
+      span 등록 날짜 #{moment(reservation.createdAt).format('YYYY-MM-DD HH:mm:ss')} 
+      | 
+    
+    h4 Check_in
+    p.well(style='white-space:pre;')
+        = moment(reservation.check_in).format('YYYY-MM-DD HH:mm:ss')
+
+    h4 Check_out
+    p.well(style='white-space:pre;')
+        = moment(reservation.check_out).format('YYYY-MM-DD HH:mm:ss')
+
+    h4 예약 인원
+    p.well(style='white-space:pre;')= reservation.people
+
+    a.btn.btn-xs.btn-default(href='/reservations/#{reservation._id}?_method=DELETE') 예약취소
+        
+    a.btn.btn-default(href='/posts/') 목록

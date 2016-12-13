@@ -26,11 +26,15 @@ block content
             td= moment(post.createdAt).format('YYYY-MM-DD HH:mm:ss')
             td= post.read
             td
-              a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수정
-              | 
-              a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제 
-              
-              a.btn.btn-xs.btn-default(href='/reservations/new/#{post._id}') 예약
+              if(post.user_id == currentUser._id.toString())
+                a.btn.btn-xs.btn-default(href='/posts/#{post.id}/edit') 수정
+                | 
+                a.btn.btn-xs.btn-default(data-id=post.id, class='delete') 삭제
+              else
+                if(post.reservation != null)
+                  a.btn.btn-xs.btn-default(href='/reservations/#{post.reservation}') 예약중
+                else
+                  a.btn.btn-xs.btn-default(href='/reservations/new/#{post._id}') 예약
 
     a.btn.btn-primary(href='/posts/new') 숙소 등록 
     
@@ -39,7 +43,7 @@ block content
         .row
           .col-lg-6
             .input-group
-               input(type="text",name='search',id='search', class="form-control" placeholder="ex 경기도/강원도")
+               input(type="text",name='search',id='search', class="form-control" placeholder="ex 용인/파주/연천")
                span.input-group-btn
                   button.btn.btn-default(type="submit" ) 검색  
    

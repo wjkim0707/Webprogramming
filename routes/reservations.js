@@ -47,6 +47,17 @@ router.get('/', needAuth, function(req, res, next) {
     });
 });
 
+router.get('/:id', needAuth, function(req, res, next) {
+  var id = req.params.id;
+
+  Reservation.findOne(function(err, reservation) {
+    if (err) {
+      return next(err);
+    }
+    res.render('reservations/show', {reservation:reservation});
+    });
+});
+
 router.get('/new/:id', needAuth, function(req, res, next) {
   var post_id = req.params.id;
   
@@ -93,5 +104,20 @@ router.post('/:id', needAuth, function(req, res, next) {
     }
   });
 });
+
+router.delete('/:id', function(req, res, next) {
+   Reservation.findById(req.params.id,function(err,reservation){
+    if (err) {
+      return next(err);
+    }
+   });
+    Reservation.findOneAndRemove({_id: req.params.id}, function(err) {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', '예약이 취소되었습니다..');
+      res.redirect('/posts');
+    });
+  });
 
 module.exports = router;

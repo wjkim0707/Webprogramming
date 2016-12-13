@@ -1,6 +1,8 @@
 var express = require('express');
 var User = require('../models/User');
 var Post = require('../models/Post');
+var Reservation = require('../models/Reservation');
+    _ = require('lodash');
 var router = express.Router();
 
 
@@ -11,7 +13,13 @@ router.get('/', function(req, res, next) {
     if(err){
       return next(err);
     }
-    res.render('posts/index',{posts: posts});
+  Reservation.find({user_id: req.user._id}, function(err, reservations){
+    posts.map(function(post, index){
+      var rev = _.find(reservations, {post_id: post._id});
+      post.reservation = rev ? rev._id : null;
+    });
+    res.render('posts/index', {posts: posts});
+    });
   });
 });
 
@@ -49,7 +57,8 @@ router.post('/', function(req, res, next) {
     fee : req.body.fee,
     city : req.body.city,
     detail : req.body.detail,
-    password : req.body.password
+    password : req.body.password,
+    user_id : req.user._id
   });
   post.save(function(err){
 

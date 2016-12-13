@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 // schema선언   DB에 title, fee, city, detail, password, read, createdAt을 넣어주겠다고 선언함
 var schema = new Schema({
   title: {type: String, required: true, trim: true},
+  user_id: {type: ObjectId},
   fee: {type: Number, required: true, index: true, trim: true},
   city: {type: String},
   address: {type: String},
